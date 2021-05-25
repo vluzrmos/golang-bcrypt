@@ -21,6 +21,16 @@ You can compile and make a shortcut to it by running:
 go build -o bcrypt main.go
 ```
 
-and move that `bcrypt` generated file to somewhere. 
+and move that `bcrypt` generated file to somewhere in your system path. 
 
 > Note: Make sure to give this build the right permissions to run on your operational system.
+
+and then you can just run:
+
+```bash
+bcrypt
+```
+
+# License
+
+DBAD.
