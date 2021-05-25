@@ -11,7 +11,7 @@ go run main.go
 
 will be like this:
 
-![Image of Yaktocat](bcrypt-sample.png)
+![Image of Bcrypt Sample](bcrypt-sample.png)
 
 
 ## Building
