@@ -20,7 +20,6 @@ func bcrypt_hash(password string) (string, error) {
 }
 
 func main() {
-
 	fmt.Print("Enter password: ")
 
 	password, err := term.ReadPassword(syscall.Stdin)
