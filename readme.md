@@ -31,6 +31,26 @@ and then you can just run:
 bcrypt
 ```
 
+or via shell pipe:
+
+```bash
+echo "yourpassword" | bcrypt
+```
+
+```bash
+cat file-with-plain-password.txt  | bcrypt
+```
+
+To increase the cost of the hash, you should pass the argument `--cost` or `-c`, default is 10.
+
+```bash
+bcrypt -c 14
+```
+
+```bash
+bcrypt --cost 14
+```
+
 # License
 
 DBAD.
