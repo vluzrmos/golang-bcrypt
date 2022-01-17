@@ -8,6 +8,8 @@ import (
 	"os"
 	"syscall"
 
+	"strings"
+
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/term"
 )
@@ -29,7 +31,7 @@ func main() {
 
 	if (info.Mode() & os.ModeCharDevice) == 0 {
 		p, _ := ioutil.ReadAll(os.Stdin)
-		password = p
+		password = []byte(strings.Trim(string(p), " \r\n"))
 	} else {
 		fmt.Print("Enter password: ")
 
