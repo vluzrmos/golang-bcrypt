@@ -3,7 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"log"
+	"os"
 	"syscall"
 
 	"golang.org/x/crypto/bcrypt"
@@ -17,14 +19,29 @@ func main() {
 	flag.IntVar(&cost, "c", bcrypt.DefaultCost, "BCrypt password cost.")
 	flag.Parse()
 
-	fmt.Print("Enter password: ")
+	var password []byte
 
-	password, err := term.ReadPassword(syscall.Stdin)
-
-	fmt.Println()
+	info, err := os.Stdin.Stat()
 
 	if err != nil {
 		log.Fatalln(err)
+	}
+
+	if (info.Mode() & os.ModeCharDevice) == 0 {
+		p, _ := ioutil.ReadAll(os.Stdin)
+		password = p
+	} else {
+		fmt.Print("Enter password: ")
+
+		p, err := term.ReadPassword(syscall.Stdin)
+
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		password = p
+
+		fmt.Println()
 	}
 
 	hashed, err := bcrypt.GenerateFromPassword([]byte(password), cost)
